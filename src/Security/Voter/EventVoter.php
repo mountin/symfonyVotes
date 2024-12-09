@@ -10,18 +10,19 @@ final class EventVoter extends Voter
 {
     public const EDIT = 'POST_EDIT';
     public const VIEW = 'POST_VIEW';
-    public const VIEW = 'POST_DELETE';
+    public const DELETE = 'POST_DELETE';
 
     protected function supports(string $attribute, mixed $subject): bool
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW])
+        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
             && $subject instanceof \App\Entity\Event;
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
+//        die('attrubute');
         $user = $token->getUser();
 
         // if the user is anonymous, do not grant access
@@ -46,4 +47,5 @@ final class EventVoter extends Voter
 
         return false;
     }
+
 }
