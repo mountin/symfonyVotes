@@ -16,6 +16,7 @@ class AppFixtures extends Fixture
 
         UserFactory::createMany(20);
         EventFactory::createMany(20);
+        //PokemonFactory::createMany(20);
 
         $manager->flush();
     }
