@@ -20,15 +20,18 @@ use App\Security\Voter\EventVoter;
 final class EventController extends AbstractController
 {
     #[Route(name: 'app_event_index', methods: ['GET'])]
-    public function index(EventRepository $eventRepository): Response
+//    #[IsGranted(EventVoter::VIEW, 'event')]
+    public function index(EventRepository $eventRepository, UserInterface $user): Response
     {
         return $this->render('event/index.html.twig', [
             'events' => $eventRepository->findAll(),
+            //'event' => $user,
         ]);
     }
 
 
     #[Route('/own', name: 'app_event_own', methods: ['GET'])]
+    #[IsGranted(EventVoter::VIEW, 'event')]
     public function own(EventRepository $eventRepository): Response
     {
         //dump($this->getUser()->getId()); die;

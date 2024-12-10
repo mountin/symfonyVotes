@@ -3,11 +3,26 @@
 {% block title %}Edit Event{% endblock %}
 
 {% block body %}
-    <h1>Edit Event</h1>
 
-    {{ include('event/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_event_index') }}">back to list</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>Welcome, Admin!</p>
+        <h1>Edit Event</h1>
 
-    {{ include('event/_delete_form.html.twig') }}
+        {{ include('event/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('app_event_index') }}">back to list</a>
+
+        {{ include('event/_delete_form.html.twig') }}
+    {% else %}
+
+        <p>Access restricted.</p>
+
+    {% endif %}
+
+
+
+
+
+
 {% endblock %}

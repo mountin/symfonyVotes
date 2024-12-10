@@ -5,6 +5,11 @@
 {% block body %}
     <h1>Event index</h1>
 
+    {% if 1==1 %}
+    {#{% if is_granted('POST_VIEW', event) %}#}
+        <p>You can edit this event.</p>
+
+
     <table class="table">
         <thead>
             <tr>
@@ -34,6 +39,9 @@
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <p>You don't have permission to edit this event.</p>
+    {% endif %}
 
     <a href="{{ path('app_event_new') }}">Create new</a>
 {% endblock %}
